@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update a task by ID
-router.put('/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
   try {
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedTask) return res.status(404).send({ message: 'Task not found' });

@@ -1,0 +1,81 @@
+/* TaskForm.module.css */
+.form_title {
+  text-align: center;
+ 
+  color: #060741;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+textarea {
+  resize: none;
+  min-height: 200px;
+  height: 200px;
+  max-height: 200px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: #c4c1c1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+label {
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: large;
+  font-weight: 700;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.submitButton,
+.cancelButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.submitButton {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.cancelButton {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.cancelButton:hover {
+  background-color: #c0392b;
+}
+.helpText {
+  text-align: center;
+  color: #3d3939;
+  font-size: 1.2rem;
+  font-weight: 400;
+}

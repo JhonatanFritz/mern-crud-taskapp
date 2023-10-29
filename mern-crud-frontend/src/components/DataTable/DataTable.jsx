@@ -1,27 +1,25 @@
 import React from 'react';
-import DataTable from 'react-data-table-component';
-import IconButton from '../IconButton/IconButton';
+import TaskCard from '../TaskCard/TaskCard';
+import styles from './CustomDataTable.module.css'; // Importa los estilos CSS Modules
 
-const CustomDataTable = ({ data, editItem, viewItem, deleteItem }) => {
-
-    const columns = [
-        { name: 'Título', selector: 'title' },
-        { name: 'Descripción', selector: 'description' },
-        { name: 'Completado', selector: 'completed', cell: row => row.completed ? 'Sí' : 'No' },
-        {
-            name: 'Acciones',
-            cell: row => (
-                <>
-                    <IconButton onClick={() => editItem(row)}>Editar</IconButton>
-                    <IconButton onClick={() => viewItem(row)}>Ver</IconButton>
-                    <IconButton onClick={() => deleteItem(row)}>Eliminar</IconButton>
-
-                </>
-            )
-        }
-    ];
-
-    return <DataTable data={data} columns={columns} />;
+const CustomDataTable = ({ data, onEdit,deleteItem, sortTasks, onToggleComplete }) => {
+    const sortedTasks = sortTasks(data); // Ordena las tareas según el criterio de ordenamiento
+    return (
+        <div className={`${styles["card-container"]} ${styles.datatable}`}> {/* Aplica el estilo al contenedor */}
+        
+            {sortedTasks.map((row) => (
+                <TaskCard
+                    key={row._id}
+                    title={row.title}
+                    description={row.description}
+                    completed={row.completed}
+                    onEdit={() => onEdit(row)} // Utiliza la prop onEdit
+                    onDelete={() => deleteItem(row)}
+                    onToggleComplete={() => onToggleComplete(row._id)}
+                />
+            ))}
+        </div>
+    );
 }
 
 export default CustomDataTable;
