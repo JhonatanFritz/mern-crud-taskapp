@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CustomDataTable from "../components/DataTable/DataTable";
 import Header from "../components/Header/Header";
 import Taskform from "../components/TaskForm/TaskForm";
+import Modal from "../components/ItemFormModal/ItemFormModal";
 import {
   getTasks,
   getTask,
@@ -17,6 +18,7 @@ const Home = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false); // Agrega un estado para controlar si estás editando una tarea
   const [selectedTask, setSelectedTask] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,6 +38,8 @@ const Home = () => {
     fetchData();
   }, []);
 
+
+
   const handleDelete = (item) => {
     setCurrentItem(item);
   };
@@ -45,7 +49,7 @@ const Home = () => {
       // Si el item tiene un ID, entonces es una actualización
       // Realiza la actualización en el servidor
       await updateTask(editedItem._id, editedItem);
-  
+
       // Actualiza la lista de tareas local
       setData((prevData) => {
         // Encuentra la tarea editada y reemplaza sus datos
@@ -53,24 +57,23 @@ const Home = () => {
           task._id === editedItem._id ? editedItem : task
         );
       });
-      setIsEditing(false); // Sal del modo de edición después de guardar los cambios en la tarea editada 
+      setIsEditing(false); // Sal del modo de edición después de guardar los cambios en la tarea editada
       setSelectedTask(null); // Limpia la tarea seleccionada
     } else {
       // De lo contrario, es un nuevo item
       const createdTask = await createTask(editedItem);
-  
+
       // Agrega la tarea creada en la parte superior y actualiza el estado
       setData((prevData) => [createdTask, ...prevData]);
     }
     setShowEditModal(false);
   };
-  
 
   const onCancel = () => {
     setSelectedTask(null); // Restablece la tarea seleccionada
     setIsEditing(false); // Sal del modo de edición
   };
-  
+
   const handleConfirmDelete = async () => {
     if (currentItem && currentItem._id) {
       await deleteTask(currentItem._id);
@@ -150,6 +153,14 @@ const Home = () => {
           />
         </div>
       </div>
+      {showModal && (
+        <Modal>
+          <h2>Detalles de la Tarea</h2>
+          <p>Título: {selectedTask.title}</p>
+          <p>Descripción: {selectedTask.description}</p>
+          <button onClick={() => setShowModal(false)}>Cerrar</button>
+        </Modal>
+      )}
     </div>
   );
 };

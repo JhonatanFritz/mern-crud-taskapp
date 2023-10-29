@@ -2,7 +2,7 @@
 .form_title {
   text-align: center;
  
-  color: #060741;
+  color: #e7dddd;
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -23,9 +23,10 @@ textarea {
   width: 400px;
   margin: 0 auto;
   padding: 16px;
-  background-color: #c4c1c1;
+  background-color: #202427;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color: #f0f0f0;
 }
 
 label {
@@ -64,18 +65,21 @@ textarea {
   background-color: #2ecc71;
   color: #fff;
 }
+.submitButton:hover {
+  background-color: #155731;
+}
 
 .cancelButton {
-  background-color: #e74c3c;
+  background-color: #ff2032;
   color: #fff;
 }
 
 .cancelButton:hover {
-  background-color: #c0392b;
+  background-color: #9e3e35;
 }
 .helpText {
   text-align: center;
-  color: #3d3939;
+  color: #cccccc;
   font-size: 1.2rem;
   font-weight: 400;
 }
